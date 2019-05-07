@@ -1,0 +1,56 @@
+{
+    "type": "object",
+    "properties": {
+        "detectOrientation": {
+            "required": true,
+            "type": "boolean",
+            "default": true
+        },
+        "language": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "unk",
+                "zh-Hans",
+                "zh-Hant",
+                "cs",
+                "da",
+                "nl",
+                "en",
+                "fi",
+                "fr",
+                "de",
+                "el",
+                "hu",
+                "it",
+                "ja",
+                "ko",
+                "nb",
+                "pl",
+                "pt",
+                "ru",
+                "es",
+                "sv",
+                "tr",
+                "ar",
+                "ro",
+                "sr-Cyrl",
+                "sr-Latn",
+                "sk"
+            ],
+            "default": "unk"
+        },
+        "requestBody": {
+            "properties": {
+                "url": {
+                    "description": "Publicly reachable URL of an image.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "type": "object"
+        }
+    }
+}

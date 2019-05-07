@@ -1,0 +1,192 @@
+{
+    "title": "Computer Vision Client",
+    "description": "The Computer Vision API provides state-of-the-art algorithms to process images and return information. For example, it can be used to determine if an image contains mature content, or it can be used to find all the faces in an image.  It also has other features like estimating dominant and accent colors, categorizing the content of images, and describing an image with complete English sentences.  Additionally, it can also intelligently generate images thumbnails for displaying large images effectively.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-ComputerVision/2.0/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://westcentralus.api.cognitive.microsoft.com/vision/v2.0",
+                    "{Endpoint}",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "apim_key": {
+                "label": "Ocp-Apim-Subscription-Key (apim_key)",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "AnalyzeImage": {
+            "main": "./lib/actions/AnalyzeImage.js",
+            "title": "This operation extracts a rich set of visual features based on the image content.\r\nTwo input methods are supported -- (1) Uploading an image or (2) specifying an image URL. Within your request, there is an optional parameter to allow you to choose which features to return. By default, image categories are returned in the response.\r\nA successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "description": "This operation extracts a rich set of visual features based on the image content.\r\nTwo input methods are supported -- (1) Uploading an image or (2) specifying an image URL. Within your request, there is an optional parameter to allow you to choose which features to return. By default, image categories are returned in the response.\r\nA successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AnalyzeImage.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GetAreaOfInterest": {
+            "main": "./lib/actions/GetAreaOfInterest.js",
+            "title": "This operation returns a bounding box around the most important area of the image.\r\nA successful response will be returned in JSON. If the request failed, the response contains an error code and a message to help determine what went wrong.\r\nUpon failure, the error code and an error message are returned. The error code could be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, NotSupportedImage, FailedToProcess, Timeout, or InternalServerError.",
+            "description": "This operation returns a bounding box around the most important area of the image.\r\nA successful response will be returned in JSON. If the request failed, the response contains an error code and a message to help determine what went wrong.\r\nUpon failure, the error code and an error message are returned. The error code could be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, NotSupportedImage, FailedToProcess, Timeout, or InternalServerError.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GetAreaOfInterest.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DescribeImage": {
+            "main": "./lib/actions/DescribeImage.js",
+            "title": "This operation generates a description of an image in human readable language with complete sentences. The description is based on a collection of content tags, which are also returned by the operation. More than one description can be generated for each image. Descriptions are ordered by their confidence score. All descriptions are in English.\r\nTwo input methods are supported -- (1) Uploading an image or (2) specifying an image URL.\r\nA successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "description": "This operation generates a description of an image in human readable language with complete sentences. The description is based on a collection of content tags, which are also returned by the operation. More than one description can be generated for each image. Descriptions are ordered by their confidence score. All descriptions are in English.\r\nTwo input methods are supported -- (1) Uploading an image or (2) specifying an image URL.\r\nA successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DescribeImage.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "DetectObjects": {
+            "main": "./lib/actions/DetectObjects.js",
+            "title": "Performs object detection on the specified image.\r\nTwo input methods are supported -- (1) Uploading an image or (2) specifying an image URL.\r\nA successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "description": "Performs object detection on the specified image.\r\nTwo input methods are supported -- (1) Uploading an image or (2) specifying an image URL.\r\nA successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/DetectObjects.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "GenerateThumbnail": {
+            "main": "./lib/actions/GenerateThumbnail.js",
+            "title": "This operation generates a thumbnail image with the user-specified width and height. By default, the service analyzes the image, identifies the region of interest (ROI), and generates smart cropping coordinates based on the ROI. Smart cropping helps when you specify an aspect ratio that differs from that of the input image.\r\nA successful response contains the thumbnail image binary. If the request failed, the response contains an error code and a message to help determine what went wrong.\r\nUpon failure, the error code and an error message are returned. The error code could be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, InvalidThumbnailSize, NotSupportedImage, FailedToProcess, Timeout, or InternalServerError.",
+            "description": "This operation generates a thumbnail image with the user-specified width and height. By default, the service analyzes the image, identifies the region of interest (ROI), and generates smart cropping coordinates based on the ROI. Smart cropping helps when you specify an aspect ratio that differs from that of the input image.\r\nA successful response contains the thumbnail image binary. If the request failed, the response contains an error code and a message to help determine what went wrong.\r\nUpon failure, the error code and an error message are returned. The error code could be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, InvalidThumbnailSize, NotSupportedImage, FailedToProcess, Timeout, or InternalServerError.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/GenerateThumbnail.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "ListModels": {
+            "main": "./lib/actions/ListModels.js",
+            "title": "This operation returns the list of domain-specific models that are supported by the Computer Vision API. Currently, the API supports following domain-specific models: celebrity recognizer, landmark recognizer.\r\nA successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "description": "This operation returns the list of domain-specific models that are supported by the Computer Vision API. Currently, the API supports following domain-specific models: celebrity recognizer, landmark recognizer.\r\nA successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/ListModels.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "AnalyzeImageByDomain": {
+            "main": "./lib/actions/AnalyzeImageByDomain.js",
+            "title": "This operation recognizes content within an image by applying a domain-specific model. The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request. Currently, the API provides following domain-specific models: celebrities, landmarks.\r\nTwo input methods are supported -- (1) Uploading an image or (2) specifying an image URL.\r\nA successful response will be returned in JSON.\r\nIf the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "description": "This operation recognizes content within an image by applying a domain-specific model. The list of domain-specific models that are supported by the Computer Vision API can be retrieved using the /models GET request. Currently, the API provides following domain-specific models: celebrities, landmarks.\r\nTwo input methods are supported -- (1) Uploading an image or (2) specifying an image URL.\r\nA successful response will be returned in JSON.\r\nIf the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/AnalyzeImageByDomain.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "RecognizePrintedText": {
+            "main": "./lib/actions/RecognizePrintedText.js",
+            "title": "Optical Character Recognition (OCR) detects text in an image and extracts the recognized characters into a machine-usable character stream.\r\nUpon success, the OCR results will be returned.\r\nUpon failure, the error code together with an error message will be returned. The error code can be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, NotSupportedImage, NotSupportedLanguage, or InternalServerError.",
+            "description": "Optical Character Recognition (OCR) detects text in an image and extracts the recognized characters into a machine-usable character stream.\r\nUpon success, the OCR results will be returned.\r\nUpon failure, the error code together with an error message will be returned. The error code can be one of InvalidImageUrl, InvalidImageFormat, InvalidImageSize, NotSupportedImage, NotSupportedLanguage, or InternalServerError.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/RecognizePrintedText.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "TagImage": {
+            "main": "./lib/actions/TagImage.js",
+            "title": "This operation generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag \"cello\" may be accompanied by the hint \"musical instrument\". All tags are in English.\r\nTwo input methods are supported -- (1) Uploading an image or (2) specifying an image URL.\r\nA successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "description": "This operation generates a list of words, or tags, that are relevant to the content of the supplied image. The Computer Vision API can return tags based on objects, living beings, scenery or actions found in images. Unlike categories, tags are not organized according to a hierarchical classification system, but correspond to image content. Tags may contain hints to avoid ambiguity or provide context, for example the tag \"cello\" may be accompanied by the hint \"musical instrument\". All tags are in English.\r\nTwo input methods are supported -- (1) Uploading an image or (2) specifying an image URL.\r\nA successful response will be returned in JSON. If the request failed, the response will contain an error code and a message to help understand what went wrong.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/TagImage.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

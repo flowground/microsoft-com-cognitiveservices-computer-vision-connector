@@ -1,0 +1,33 @@
+{
+    "type": "object",
+    "properties": {
+        "model": {
+            "required": true,
+            "type": "string"
+        },
+        "language": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "en",
+                "es",
+                "ja",
+                "pt",
+                "zh"
+            ],
+            "default": "en"
+        },
+        "requestBody": {
+            "properties": {
+                "url": {
+                    "description": "Publicly reachable URL of an image.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "type": "object"
+        }
+    }
+}

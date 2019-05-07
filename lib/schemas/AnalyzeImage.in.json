@@ -1,0 +1,68 @@
+{
+    "type": "object",
+    "properties": {
+        "visualFeatures": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "ImageType",
+                    "Faces",
+                    "Adult",
+                    "Categories",
+                    "Color",
+                    "Tags",
+                    "Description",
+                    "Objects",
+                    "Brands"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                    "modelAsString": false,
+                    "name": "VisualFeatureTypes"
+                },
+                "nullable": false
+            }
+        },
+        "details": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "enum": [
+                    "Celebrities",
+                    "Landmarks"
+                ],
+                "type": "string",
+                "x-ms-enum": {
+                    "modelAsString": false,
+                    "name": "Details"
+                },
+                "nullable": false
+            }
+        },
+        "language": {
+            "required": false,
+            "type": "string",
+            "enum": [
+                "en",
+                "es",
+                "ja",
+                "pt",
+                "zh"
+            ],
+            "default": "en"
+        },
+        "requestBody": {
+            "properties": {
+                "url": {
+                    "description": "Publicly reachable URL of an image.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "url"
+            ],
+            "type": "object"
+        }
+    }
+}
