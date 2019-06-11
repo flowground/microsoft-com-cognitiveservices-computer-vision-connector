@@ -5,7 +5,7 @@
 A generated **flow**ground connector for the Computer Vision Client API (version 2.0).
 
 Generated from: https://api.apis.guru/v2/specs/microsoft.com/cognitiveservices-ComputerVision/2.0/swagger.json<br/>
-Generated at: 2019-05-07T17:43:00+03:00
+Generated at: 2019-06-11T18:14:41+03:00
 
 ## API Description
 
